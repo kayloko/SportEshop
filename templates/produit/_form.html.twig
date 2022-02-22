@@ -1,0 +1,37 @@
+{{form_start(form)}}
+
+{{form_row(form.nom,
+        {
+        'attr':{'placeholder':"Nom du produit"}
+        })
+    }}
+
+{{form_row(form.descr,
+        {
+        'label':'Description',
+        'attr':{'placeholder':"Description du produit"}
+        })
+    }}
+
+{{form_row(form.prix,
+        {
+        'attr':{'placeholder':"Prix du produit"}
+        })
+    }}
+
+{{form_row(form.qte,
+        {
+        'label':"Quantité",
+        'attr':{'placeholder':"Quantité du produit en Stock"}
+        })
+    }}
+
+{{form_row(form.image,
+        {
+        'attr':{'placeholder':"Lien de l'image du produit"
+        }})
+                }}
+
+<button type="submit" class="btn btn-success">{{ button_label|default('Ajouter') }}</button>
+
+{{form_end(form)}}

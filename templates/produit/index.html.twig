@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+	<h1>Produit index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Quantité</th>
+				<th>Prix</th>
+				<th>Image</th>
+				<th>Date de creation</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for produit in produits %}
+				<tr>
+					<td>{{ produit.id }}</td>
+					<td>{{ produit.nom }}</td>
+					<td>{{ produit.descr }}</td>
+					<td>{{ produit.qte }}</td>
+					<td>{{ produit.prix }}</td>
+					<td>{{ produit.image }}</td>
+					<td>{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('produit_show', {'id': produit.id}) }}">
+							<button class="btn alert-info">{{ button_label|default('Afficher') }}</button>
+						</a>
+					</td>
+					<td>
+						<a href="{{ path('produit_edit', {'id': produit.id}) }}">
+							<button class="btn alert-info">{{ button_label|default('Modifier') }}</button>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('produit_new') }}">
+		<button class="btn btn-dark">{{ button_label|default('Ajouter Produit') }}</button>
+	</a>
+{% endblock %}
