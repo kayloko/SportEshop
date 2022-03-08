@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<label for="id commande">id commande</label>
+
+<input
+type="text" disabled value="{{commande.id}}">
+
+
+{# on peut utiliser la ligne de code suivante au lieu :
+		{{form_widget(form)}} #}
+
+{{form_row(form.user)}}
+{# {{form_row(form.items)}} #}
+{# {{form_row(form.produits)}} #}
+{{form_row(form.prixTotal,
+        {
+        'attr':{'placeholder':"prix total de la commande"},
+        }
+        
+        )}}
+{{form_row(form.etat)}}
+	<button class="btn btn-default"> {{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

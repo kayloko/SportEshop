@@ -1,148 +1,245 @@
+{% set containerSwitch = 0 %}
 {% extends 'base.html.twig' %}
 
 {% block title %}Shop
 {% endblock %}
 
 {% block body %}
-	{# <style>
-																																																																.example-wrapper {
-																																																																	margin: 1em auto;
-																																																																	max-width: 800px;
-																																																																	width: 95%;
-																																																																	font: 18px / 1.5 sans-serif;
-																																																																}
-																																																																.example-wrapper code {
-																																																																	background: #F5F5F5;
-																																																																	padding: 2px 6px;
-																																																																}
-																																																															</style>
-																																																														
-																																																															<div class="example-wrapper">
-																																																																<h1>Shop
-																																																																	{{ controller_name }}! ✅</h1>
-																																																														
-																																																																This friendly message is coming from:
-																																																																<ul>
-																																																																	<li>Your controller at
-																																																																		<code>
-																																																																			<a href="{{ 'C:/wamp64/www/year3/SportEshop/src/Controller/ShopController.php'|file_link(0) }}">src/Controller/ShopController.php</a>
-																																																																		</code>
-																																																																	</li>
-																																																																	<li>Your template at
-																																																																		<code>
-																																																																			<a href="{{ 'C:/wamp64/www/year3/SportEshop/templates/shop/index.html.twig'|file_link(0) }}">templates/shop/index.html.twig</a>
-																																																																		</code>
-																																																																	</li>
-																																																																</ul>
-																																																															</div> #}
-	<body>
-		<!-- Navigation-->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container px-4 px-lg-5">
-				<a class="navbar-brand" href="#!">Shop</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#!">Acceuil</a>
-						</li>
-						{# ici c'est temporaire, ca nous amene a la page qui permet de gerer le shop #}
-						<li class="nav-item">
-							<a class="nav-link " aria-current="page" href="produit">Gerer</a>
-						</li>
 
-						<li class="nav-item">
-							<a class="nav-link" href="#!">A propos</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Categories
+	<style>
+		type="text/css" table,
+		td,
+		a {
+			-webkit-text-size-adjust: 100%;
+			-ms-text-size-adjust: 100%;
+		}
+
+		table,
+		td {
+			mso-table-lspace: 0;
+			mso-table-rspace: 0;
+		}
+
+		img {
+			-ms-interpolation-mode: bicubic;
+		}
+
+		img {
+			border: 0;
+			height: auto;
+			line-height: 100%;
+			outline: none;
+			text-decoration: none;
+		}
+
+		table {
+			border-collapse: collapse !important;
+		}
+
+		body {
+			height: 100% !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			width: 100% !important;
+		}
+
+		a[x-apple-data-detectors] {
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		@media screen and(max-width: 480px) {
+			.mobile-hide {
+				display: none !important;
+			}
+
+			.mobile-center {
+				text-align: center !important;
+			}
+		}
+
+		div[style*="margin: 16px 0;"] {
+			margin: 0 !important;
+		}
+	</style>
+
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Offcanvas Menu Section Begin -->
+	<div class="offcanvas-menu-overlay"></div>
+	<div class="offcanvas-menu-wrapper">
+
+		<div id="mobile-menu-wrap"></div>
+		<div class="canvas-social">
+			<a href="#">
+				<i class="fa fa-facebook"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-twitter"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-youtube-play"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</div>
+	</div><!-- Offcanvas Menu Section End --><!-- Header Section Begin --><header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="logo">
+						<a href="./index.html">
+							<img src="img/logo.png" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<nav class="nav-menu">
+						<ul>
+							<li>
+								<a href="{{path('index')}}">Home</a>
+							</li>
+							<li>
+								<a href="./about-us.html">About Us</a>
+							</li>
+							<li>
+								<a href="./class-details.html">Program</a>
+							</li>
+							<li>
+								<a href="./services.html">Services</a>
+							</li>
+							<li class="active">
+								<a href="{{path('shop')}}">Shop</a>
+							</li>
+							<li>
+								<a href="#">Pages</a>
+								<ul class="dropdown">
+									<li>
+										<a href="./about-us.html">About us</a>
+									</li>
+									<li>
+										<a href="./class-timetable.html">Classes timetable</a>
+									</li>
+									<li>
+										<a href="./bmi-calculator.html">Bmi calculate</a>
+									</li>
+									<li>
+										<a href="./team.html">Products</a>
+									</li>
+									<li>
+										<a href="./gallery.html">Gallery</a>
+									</li>
+									<li>
+										<a href="./blog.html">Our blog</a>
+									</li>
+									<li>
+										<a href="./404.html">404</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="./contact.html">Complaint</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+
+				<div class="col-lg-3">
+					<div class="top-option">
+						<div class="to-search search-switch">
+							<i class="fa fa-search"></i>
+						</div>
+						<div class="to-social">
+							<a href="#">
+								<i class="fa fa-facebook"></i>
 							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li>
-									<a class="dropdown-item" href="#!">All Products</a>
-								</li>
-								<li><hr class="dropdown-divider"/></li>
-								<li>
-									<a class="dropdown-item" href="#!">Clothes</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#!">Whey</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="d-flex">
-						<button class="btn btn-outline-dark" type="submit">
-							<i class="bi-cart-fill me-1"></i>
-							Panier
-							<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-						</button>
-					</form>
+							<a href="#">
+								<i class="fa fa-twitter"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-youtube-play"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-instagram"></i>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
-		</nav>
+			<div class="canvas-open">
+				<i class="fa fa-bars"></i>
+			</div>
+		</div>
+		<!-- Header End -->
 		<!-- Header-->
-		<header class="bg-dark py-5">
-			<div class="container px-4 px-lg-5 my-5">
-				<div class="text-center text-white">
-					<h1 class="display-4 fw-bolder">Bienvenue !</h1>
-					<p class="lead fw-normal text-white-50 mb-0">Nous vous souhaitons une agreable visite</p>
-				</div>
-			</div>
-		</header>
-		<!-- Section-->
-		<section class="py-5">
-			<div class="container px-4 px-lg-5 mt-5">
-				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		<div class="text-center text-white">
+			<h1 class="display-4 fw-bolder">Bienvenue !</h1>
+			<p class="lead fw-normal text-white-50 mb-0">Nous vous souhaitons une agreable visite</p>
+		</div>
+	</div>
+</header>
+<!-- Section-->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-					{% for produit in produits %}
+			{% for produit in produits %}
 
-						<div class="col mb-5">
+				<div class="col mb-5 ">
+					<div
+						class="card h-100 outline-card ">
+						<!-- Product image-->
+						<img
+						class="card-img-top" src="{{produit.image}}" alt="..."/>
+						<!-- Product details-->
+						<div class="card-body p-4">
 							<div
-								class="card h-100">
-								<!-- Product image-->
-								<img
-								class="card-img-top" src="{{produit.image}}" alt="..."/>
-								<!-- Product details-->
-								<div class="card-body p-4">
-									<div
-										class="text-center">
-										<!-- Product name-->
-										<h5 class="fw-item">{{produit.nom}}</h5>
-										<!-- Product reviews-->
-										{# <div class="d-flex justify-content-center small text-warning mb-2">
-																																																																																																					<div class="bi-star-fill"></div>
-																																																																																																					<div class="bi-star-fill"></div>
-																																																																																																					<div class="bi-star-fill"></div>
-																																																																																																					<div class="bi-star-fill"></div>
-																																																																																																					<div class="bi-star-fill"></div>
-																																																																																																				</div> #}
-										<!-- Product price-->
-											<h5>
-											{{produit.prix}}
-										DT
-									</h5>
-								</div>
-								</div>
-									<div class="text-center"> <p>{{produit.descr}}</p>
-								</div>
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a>
-									</div>
-								</div>
+								class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-item">{{produit.nom}}</h5>
+								<!-- Product reviews-->
+								{# <div class="d-flex justify-content-center small text-warning mb-2">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							<div class="bi-star-fill"></div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							<div class="bi-star-fill"></div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							<div class="bi-star-fill"></div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							<div class="bi-star-fill"></div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							<div class="bi-star-fill"></div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						</div> #}
+								<!-- Product price-->
+									<h5>
+									{{produit.prix}}
+								DT
+							</h5>
+						</div>
+						</div>
+							<div class="text-center"> <p>{{produit.descr}}</p>
+						</div>
+						<!-- Product actions-->
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" href="{{path('panier_ajouter',{'id':produit.id}) }}">Ajouter au panier</a>
 							</div>
 						</div>
-
-					{% endfor %}
-
-
+					</div>
 				</div>
-			</body>
+
+			{% endfor %}
 		</div>
-	</body>
-</section></body></html>{% endblock %}
+
+	</div>
+
+	<div class="container" style="background-color: #eeeeee;">
+		{% do produits.setPageRange(2)  %}
+		{{knp_pagination_render(produits, 'base/paginationV4.html.twig',)}}
+	</div>
+
+
+</section>{% endblock %}

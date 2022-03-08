@@ -36,7 +36,7 @@ class Produit
      @Assert\Range(
      *      min = 1,
      *      max = 9999,
-     *      notInRangeMessage = "le Prix doit etre entre {{ 1 }}DT and {{ 9999 }}DT",
+     *      notInRangeMessage = "le Prix doit etre entre 1DT and 9999DT",
      * )
      */
     private $prix;
